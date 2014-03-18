@@ -168,8 +168,9 @@ fi
 
 # The package archive must have no leading path components, not even ./
 cd $TMPDIR
-tar -Jcvf ../$PKGFILE .PKGINFO .INSTALL .MTREE *
+tar -Jcvf ../$PKGFILE .PKGINFO .INSTALL .MTREE * >/dev/null
 cd - >/dev/null
+echo "Wrote package to file: $PWD/$PKGFILE"
 
 # Clean up
 rm -rf $TMPDIR
