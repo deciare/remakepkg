@@ -1,10 +1,15 @@
 #!/bin/bash
 
 PKGNAME=$1
+if [ -z "$PKGNAME" ]; then
+	echo "Usage: $0 <package-name>"
+	exit 1;
+fi
+
 pacman -Qq "$PKGNAME" >/dev/null 2>&1
 if [ $? -ne 0 ]; then
 	echo "$0: $PKGNAME is not currently installed"
-	exit;
+	exit 1;
 fi
 
 PACLOCALDBDIR="/var/lib/pacman/local"
